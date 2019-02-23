@@ -16,10 +16,10 @@ public class FinalProject extends JFrame{
         add(new Board());
 
         setTitle("Moving sprite");
-        setSize(400, 300);
+        setSize(1000, 500);
 
         setLocationRelativeTo(null);
-        setResizable(false);
+        setResizable(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
