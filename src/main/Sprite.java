@@ -1,30 +1,16 @@
 package main;
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
+import javax.swing.*;
+import java.awt.*;
 
-public class SpaceShip {
+public abstract class  Sprite {
     private int dx;
     private int dy;
     private int x = 40;
     private int y = 60;
     private int w;
     private int h;
-    private Image image;
-
-    public SpaceShip() {
-
-        loadImage();
-    }
-
-    private void loadImage() {
-
-        ImageIcon ii = new ImageIcon("src/Resources/craft.png");
-        image = ii.getImage();
-
-        w = image.getWidth(null);
-        h = image.getHeight(null);
-    }
+    protected Image image;
 
     public void move() {
 
@@ -63,5 +49,14 @@ public class SpaceShip {
     public Image getImage() {
 
         return image;
+    }
+
+    public void loadImage(ImageIcon imageIcon) {
+
+
+        image = imageIcon.getImage();
+
+        w = image.getWidth(null);
+        h = image.getHeight(null);
     }
 }

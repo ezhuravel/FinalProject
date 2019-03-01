@@ -13,11 +13,10 @@ import javax.swing.Timer;
 
 public class Board extends JPanel implements ActionListener {
     private Timer timer;
-    private SpaceShip spaceShip;
+    private Tank tank;
     private final int DELAY = 10;
 
     public Board() {
-
         initBoard();
     }
 
@@ -26,7 +25,7 @@ public class Board extends JPanel implements ActionListener {
         addKeyListener(new TAdapter());
         setBackground(Color.black);
 
-        spaceShip = new SpaceShip();
+        tank = new Tank();
 
         timer = new Timer(DELAY, this);
         timer.start();
@@ -42,7 +41,7 @@ public class Board extends JPanel implements ActionListener {
     private void doDrawing(Graphics g) {
 
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(spaceShip.getImage(), spaceShip.getX(), spaceShip.getY(), this);
+        g2d.drawImage(tank.getImage(), tank.getX(), tank.getY(), this);
     }
 
     @Override
@@ -51,10 +50,9 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void step() {
-        spaceShip.move();
+        tank.move();
 
-        repaint(spaceShip.getX()-1, spaceShip.getY()-1,
-                spaceShip.getWidth()+2, spaceShip.getHeight()+2);
+        repaint(tank.getX() - 1, tank.getY() - 1, tank.getWidth() - 2, tank.getHeight() - 2);
     }
 
     private class TAdapter extends KeyAdapter {
@@ -64,19 +62,19 @@ public class Board extends JPanel implements ActionListener {
             int key = e.getKeyCode();
 
             if (key == KeyEvent.VK_LEFT) {
-                spaceShip.setDx(0);
+                tank.setDx(0);
             }
 
             if (key == KeyEvent.VK_RIGHT) {
-                spaceShip.setDx(0);
+                tank.setDx(0);
             }
 
             if (key == KeyEvent.VK_UP) {
-                spaceShip.setDy(0);
+                tank.setDy(0);
             }
 
             if (key == KeyEvent.VK_DOWN) {
-                spaceShip.setDy(0);
+                tank.setDy(0);
             }
         }
 
@@ -86,19 +84,23 @@ public class Board extends JPanel implements ActionListener {
             int key = e.getKeyCode();
 
             if (key == KeyEvent.VK_LEFT) {
-               spaceShip.setDx(-2);
+               tank.setDx(-2);
+               tank.turn(2, 0);
             }
 
             if (key == KeyEvent.VK_RIGHT) {
-                spaceShip.setDx(2);
+                tank.setDx(2);
+                tank.turn(-2, 0);
             }
 
             if (key == KeyEvent.VK_UP) {
-                spaceShip.setDy(-2);
+                tank.setDy(-2);
+                tank.turn(0, 2);
             }
 
             if (key == KeyEvent.VK_DOWN) {
-                spaceShip.setDy(2);
+                tank.setDy(2);
+                tank.turn(0, -2);
             }
         }
     }
