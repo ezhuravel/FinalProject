@@ -1,12 +1,20 @@
 package main;
-
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 
 
 public class FinalProject extends JFrame{
 
-    public FinalProject() {
+    private static FinalProject uniqueInstance;
+
+    public static FinalProject getInstance(){
+        if (uniqueInstance == null){
+            uniqueInstance = new FinalProject();
+        }
+
+        return uniqueInstance;
+    }
+
+    private FinalProject() {
 
         initUI();
     }
@@ -25,10 +33,8 @@ public class FinalProject extends JFrame{
 
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            FinalProject ex = new FinalProject();
-            ex.setVisible(true);
-        });
+        FinalProject ex = FinalProject.getInstance();
+        ex.setVisible(true);
     }
 }
 
