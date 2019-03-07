@@ -18,6 +18,11 @@ public abstract class  Sprite {
         y += dy;
     }
 
+    public void setPostion(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+
     public  void setDx(int dx){
         this.dx = dx;
     }
@@ -52,11 +57,13 @@ public abstract class  Sprite {
     }
 
     public void loadImage(ImageIcon imageIcon) {
-
-
         image = imageIcon.getImage();
 
         w = image.getWidth(null);
         h = image.getHeight(null);
+    }
+
+    public Rectangle getBounds() {
+        return new Rectangle(x, y, w, h);
     }
 }
