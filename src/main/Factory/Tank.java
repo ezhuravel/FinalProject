@@ -25,6 +25,18 @@ public class Tank extends Character {
         currentState = playerAliveState;
     }
 
+    // for testing purposes
+    public void resetTank(){
+        setHealth(100);
+        ImageIcon ii = new ImageIcon("src/Resources/craft.png");
+        getSprite().loadImage(ii);
+
+        //set states
+        playerAliveState = new PlayerAliveState(this);
+        playerDeadState = new PlayerDeadState(this);
+        currentState = playerAliveState;
+    }
+
     public static Tank getTankInstance(){
         if(playerTank == null){
             playerTank = new Tank();
@@ -60,6 +72,8 @@ public class Tank extends Character {
     public PlayerState getPlayerDeadState(){
         return playerDeadState;
     }
+
+    public PlayerState getCurrentState(){return currentState;}
 
     public String getGameStatus(){
         return currentState.getGameStatus();
