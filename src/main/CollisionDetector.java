@@ -1,5 +1,7 @@
 package main;
 
+import main.Command.PlayerCommand;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -25,13 +27,11 @@ public class CollisionDetector {
                 Rectangle r2 = s.getSprite().getBounds();
 
                 if (tanksRect.intersects(r2)) {
-
-                    if(s.getType() == 1){
-                        healthCollision.execute();
-                    }
                     switch (s.getType()){
                         case 1:
                             healthCollision.execute();
+                        case 2:
+                            enemyCollision.execute();
                     }
 
                     removedCharacter = s;

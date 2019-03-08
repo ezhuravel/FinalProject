@@ -1,4 +1,4 @@
-package main;
+package main.Command;
 
 public interface PlayerCommand {
     void execute();

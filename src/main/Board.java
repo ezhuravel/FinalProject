@@ -1,5 +1,8 @@
 package main;
 
+import main.Command.TakeDamageCommand;
+import main.Command.TakeHealthCommand;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,7 +11,6 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import javax.swing.text.html.StyleSheet;
 
 public class Board extends JPanel implements ActionListener {
     private Timer timer;
@@ -68,7 +70,9 @@ public class Board extends JPanel implements ActionListener {
         step();
         CollisionDetector cd = new CollisionDetector();
         TakeHealthCommand healthCommand = new TakeHealthCommand(tank);
+        TakeDamageCommand damageCommand = new TakeDamageCommand(tank);
         cd.setHealthCollision(healthCommand);
+        cd.setEnemyCollison(damageCommand);
 
         cd.collide(characters, tank);
 
