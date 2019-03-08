@@ -1,4 +1,6 @@
-package main;
+package main.Factory;
+
+import main.Factory.Character;
 
 import javax.swing.*;
 

@@ -1,7 +1,11 @@
 package main;
 
+import main.Command.CollisionDetector;
 import main.Command.TakeDamageCommand;
 import main.Command.TakeHealthCommand;
+import main.Factory.Character;
+import main.Factory.CharacterFactory;
+import main.Factory.Tank;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

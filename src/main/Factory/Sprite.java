@@ -1,4 +1,4 @@
-package main;
+package main.Factory;
 
 import javax.swing.*;
 import java.awt.*;

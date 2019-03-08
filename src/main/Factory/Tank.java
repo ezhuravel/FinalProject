@@ -1,4 +1,5 @@
-package main;
+package main.Factory;
+
 import javax.swing.ImageIcon;
 
 public class Tank extends Character {

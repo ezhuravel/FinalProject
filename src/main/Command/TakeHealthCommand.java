@@ -1,6 +1,6 @@
 package main.Command;
 
-import main.Tank;
+import main.Factory.Tank;
 
 public class TakeHealthCommand implements PlayerCommand {
     private Tank tank;

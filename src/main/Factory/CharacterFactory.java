@@ -1,4 +1,4 @@
-package main;
+package main.Factory;
 
 import java.util.Random;
 

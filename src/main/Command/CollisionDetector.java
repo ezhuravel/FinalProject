@@ -1,6 +1,7 @@
-package main;
+package main.Command;
 
-import main.Command.PlayerCommand;
+import main.Factory.Character;
+import main.Factory.Tank;
 
 import java.awt.*;
 import java.util.ArrayList;

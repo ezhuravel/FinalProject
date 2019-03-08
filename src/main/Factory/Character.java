@@ -1,4 +1,4 @@
-package main;
+package main.Factory;
 
 public abstract class Character {
     private Sprite sprite;
