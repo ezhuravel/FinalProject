@@ -67,6 +67,7 @@ public class Board extends JPanel implements ActionListener {
             g2d.drawImage(s.getSprite().getImage(), s.getSprite().getX(), s.getSprite().getY(), this);
         }
         g.setColor(Color.WHITE);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
         g.drawString(tank.getGameStatus(), 5, 15);
         repaint();
     }
