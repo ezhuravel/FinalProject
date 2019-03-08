@@ -12,7 +12,7 @@ public abstract class Character {
         return sprite;
     }
 
-    public void setPostion(int x, int y){
+    public void setPosition(int x, int y){
         sprite.setPosition(x, y);
     }
 

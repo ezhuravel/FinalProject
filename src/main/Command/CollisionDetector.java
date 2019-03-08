@@ -10,7 +10,7 @@ public class CollisionDetector {
     private PlayerCommand enemyCollision;
     private PlayerCommand healthCollision;
 
-    public void setEnemyCollison(PlayerCommand command){
+    public void setEnemyCollision(PlayerCommand command){
         enemyCollision = command;
     }
 

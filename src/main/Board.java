@@ -67,26 +67,27 @@ public class Board extends JPanel implements ActionListener {
             g2d.drawImage(s.getSprite().getImage(), s.getSprite().getX(), s.getSprite().getY(), this);
         }
         g.setColor(Color.WHITE);
-        g.drawString("Health: " + tank.getHealth(), 5, 15);
+        g.drawString(tank.getGameStatus(), 5, 15);
         repaint();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         step();
+
         CollisionDetector cd = new CollisionDetector();
         TakeHealthCommand healthCommand = new TakeHealthCommand(tank);
         TakeDamageCommand damageCommand = new TakeDamageCommand(tank);
         cd.setHealthCollision(healthCommand);
-        cd.setEnemyCollison(damageCommand);
+        cd.setEnemyCollision(damageCommand);
 
         cd.collide(characters, tank);
 
     }
 
     private void step() {
+        tank.movePlayer();
 
-        tank.getSprite().move();
         for(Character s : characters){
             repaint(s.getSprite().getX() - 1, s.getSprite().getY() - 1, s.getSprite().getWidth() + 3, s.getSprite().getHeight() + 3);
         }

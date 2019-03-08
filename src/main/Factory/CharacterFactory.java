@@ -21,15 +21,15 @@ public class CharacterFactory {
         switch (type) {
             case "Player":
                 createdCharacter = Tank.getTankInstance();
-                createdCharacter.setPostion(randX,randY);
+                createdCharacter.setPosition(randX,randY);
                 break;
             case "Health":
                 createdCharacter = new HealthUp();
-                createdCharacter.setPostion(randX,randY);
+                createdCharacter.setPosition(randX,randY);
                 break;
             case "Enemy":
                 createdCharacter = new Enemy();
-                createdCharacter.setPostion(randX,randY);
+                createdCharacter.setPosition(randX,randY);
                 break;
         }
         return createdCharacter;

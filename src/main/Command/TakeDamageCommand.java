@@ -11,7 +11,7 @@ public class TakeDamageCommand implements PlayerCommand {
 
     @Override
     public void execute() {
-        tank.setHealth(-10);
+        tank.setHealth(-30);
     }
 
     @Override
