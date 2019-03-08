@@ -31,8 +31,10 @@ public class CollisionDetector {
                     switch (s.getType()){
                         case 1:
                             healthCollision.execute();
+                            break;
                         case 2:
                             enemyCollision.execute();
+                            break;
                     }
 
                     removedCharacter = s;

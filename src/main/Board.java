@@ -66,7 +66,9 @@ public class Board extends JPanel implements ActionListener {
         for(Character s : characters){
             g2d.drawImage(s.getSprite().getImage(), s.getSprite().getX(), s.getSprite().getY(), this);
         }
-
+        g.setColor(Color.WHITE);
+        g.drawString("Health: " + tank.getHealth(), 5, 15);
+        repaint();
     }
 
     @Override
@@ -120,22 +122,18 @@ public class Board extends JPanel implements ActionListener {
 
             if (key == KeyEvent.VK_LEFT) {
                tank.getSprite().setDx(-2);
-       //        tank.turn(2, 0);
             }
 
             if (key == KeyEvent.VK_RIGHT) {
                 tank.getSprite().setDx(2);
-         //       tank.turn(-2, 0);
             }
 
             if (key == KeyEvent.VK_UP) {
                 tank.getSprite().setDy(-2);
-           //     tank.turn(0, 2);
             }
 
             if (key == KeyEvent.VK_DOWN) {
                 tank.getSprite().setDy(2);
-             //   tank.turn(0, -2);
             }
         }
     }
