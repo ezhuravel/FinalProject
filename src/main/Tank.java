@@ -1,34 +1,35 @@
 package main;
-
 import javax.swing.ImageIcon;
 
-public class Tank extends Sprite{
+public class Tank extends Character {
+    private static Tank playerTank;
+    private int health;
 
-    private int power = 10;
-    private int health = 100;
 
-    public Tank() {
+
+    private Tank() {
+        setHealth(100);
         ImageIcon ii = new ImageIcon("src/Resources/craft.png");
-        loadImage(ii);
+        getSprite().loadImage(ii);
     }
 
-    public void turn(int x, int y){
-       ImageIcon ii = new ImageIcon("src/Resources/tankLeft.png");
-
-        if(x > 0){
-            ii = new ImageIcon("src/Resources/tankLeft.png");
-
-        }
-        else if(x < 0){
-            ii = new ImageIcon("src/Resources/tankRight.png");
-        }
-        else if (y > 0){
-            ii = new ImageIcon("src/Resources/tankUp.png");
-        }
-        else if (y < 0){
-            ii = new ImageIcon("src/Resources/tankDown.png");
+    public static Tank getTankInstance(){
+        if(playerTank == null){
+            playerTank = new Tank();
         }
 
-        loadImage(ii);
+        return playerTank;
+    }
+
+    public int getHealth(){
+        return health;
+    }
+
+    public void setHealth(int amount){
+        health += amount;
+    }
+
+    public int getType(){
+        return 0;
     }
 }

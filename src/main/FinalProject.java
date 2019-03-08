@@ -4,17 +4,7 @@ import javax.swing.JFrame;
 
 public class FinalProject extends JFrame{
 
-    private static FinalProject uniqueInstance;
-
-    public static FinalProject getInstance(){
-        if (uniqueInstance == null){
-            uniqueInstance = new FinalProject();
-        }
-
-        return uniqueInstance;
-    }
-
-    private FinalProject() {
+    public FinalProject() {
 
         initUI();
     }
@@ -24,7 +14,7 @@ public class FinalProject extends JFrame{
         add(new Board());
 
         setTitle("Moving sprite");
-        setSize(1000, 500);
+        setSize(1000, 1000);
 
         setLocationRelativeTo(null);
         setResizable(true);
@@ -33,7 +23,7 @@ public class FinalProject extends JFrame{
 
 
     public static void main(String[] args) {
-        FinalProject ex = FinalProject.getInstance();
+        FinalProject ex =  new FinalProject();
         ex.setVisible(true);
     }
 }

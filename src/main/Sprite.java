@@ -3,13 +3,14 @@ package main;
 import javax.swing.*;
 import java.awt.*;
 
-public abstract class  Sprite {
+public class Sprite {
     private int dx;
     private int dy;
     private int x = 40;
     private int y = 60;
     private int w;
     private int h;
+
     protected Image image;
 
     public void move() {
@@ -18,7 +19,7 @@ public abstract class  Sprite {
         y += dy;
     }
 
-    public void setPostion(int x, int y){
+    public void setPosition(int x, int y){
         this.x = x;
         this.y = y;
     }

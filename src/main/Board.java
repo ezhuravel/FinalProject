@@ -8,11 +8,12 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.text.html.StyleSheet;
 
 public class Board extends JPanel implements ActionListener {
     private Timer timer;
     private Tank tank;
-    private ArrayList<Sprite> sprites = new ArrayList<>();
+    private ArrayList<Character> characters = new ArrayList<>();
     private final int DELAY = 10;
 
     public Board() {
@@ -24,12 +25,22 @@ public class Board extends JPanel implements ActionListener {
         addKeyListener(new TAdapter());
         setBackground(Color.black);
 
-        tank = new Tank();
-        HealthUp hu = new HealthUp();
-        hu.setPostion(100,100);
+        CharacterFactory characterFactory = new CharacterFactory();
+        tank = (Tank)characterFactory.CreateCharacter("Player");
 
-        sprites.add(tank);
-        sprites.add(hu);
+
+        characters.add(tank);
+
+        // add 5 random power ups
+        for(int i =0; i<= 5; i++){
+            characters.add(characterFactory.CreateCharacter("Health"));
+        }
+
+        // add 15 random enemies
+        for(int i =0; i<= 15; i++){
+            characters.add(characterFactory.CreateCharacter("Enemy"));
+        }
+
 
         timer = new Timer(DELAY, this);
         timer.start();
@@ -46,8 +57,8 @@ public class Board extends JPanel implements ActionListener {
 
         Graphics2D g2d = (Graphics2D) g;
 
-        for(Sprite s : sprites){
-            g2d.drawImage(s.getImage(), s.getX(), s.getY(), this);
+        for(Character s : characters){
+            g2d.drawImage(s.getSprite().getImage(), s.getSprite().getX(), s.getSprite().getY(), this);
         }
 
     }
@@ -55,32 +66,20 @@ public class Board extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         step();
-        Rectangle tanksRect = tank.getBounds();
-        Sprite removedSprite = null;
+        CollisionDetector cd = new CollisionDetector();
+        TakeHealthCommand healthCommand = new TakeHealthCommand(tank);
+        cd.setHealthCollision(healthCommand);
 
-        for(Sprite s : sprites){
-            if (s !=  tank){
-                Rectangle r2 = s.getBounds();
+        cd.collide(characters, tank);
 
-                if (tanksRect.intersects(r2)) {
-                    removedSprite = s;
-                }
-            }
-        }
-
-        if(removedSprite != null){
-            sprites.remove(removedSprite);
-        }
     }
 
     private void step() {
 
-        tank.move();
-        for(Sprite s : sprites){
-
-            repaint(s.getX() - 1, s.getY() - 1, s.getWidth() + 3, s.getHeight() + 3);
+        tank.getSprite().move();
+        for(Character s : characters){
+            repaint(s.getSprite().getX() - 1, s.getSprite().getY() - 1, s.getSprite().getWidth() + 3, s.getSprite().getHeight() + 3);
         }
-        //repaint(tank.getX() - 1, tank.getY() - 1, tank.getWidth() + 3, tank.getHeight() + 3);
     }
 
     private class TAdapter extends KeyAdapter {
@@ -90,19 +89,19 @@ public class Board extends JPanel implements ActionListener {
             int key = e.getKeyCode();
 
             if (key == KeyEvent.VK_LEFT) {
-                tank.setDx(0);
+                tank.getSprite().setDx(0);
             }
 
             if (key == KeyEvent.VK_RIGHT) {
-                tank.setDx(0);
+                tank.getSprite().setDx(0);
             }
 
             if (key == KeyEvent.VK_UP) {
-                tank.setDy(0);
+                tank.getSprite().setDy(0);
             }
 
             if (key == KeyEvent.VK_DOWN) {
-                tank.setDy(0);
+                tank.getSprite().setDy(0);
             }
         }
 
@@ -112,22 +111,22 @@ public class Board extends JPanel implements ActionListener {
             int key = e.getKeyCode();
 
             if (key == KeyEvent.VK_LEFT) {
-               tank.setDx(-2);
+               tank.getSprite().setDx(-2);
        //        tank.turn(2, 0);
             }
 
             if (key == KeyEvent.VK_RIGHT) {
-                tank.setDx(2);
+                tank.getSprite().setDx(2);
          //       tank.turn(-2, 0);
             }
 
             if (key == KeyEvent.VK_UP) {
-                tank.setDy(-2);
+                tank.getSprite().setDy(-2);
            //     tank.turn(0, 2);
             }
 
             if (key == KeyEvent.VK_DOWN) {
-                tank.setDy(2);
+                tank.getSprite().setDy(2);
              //   tank.turn(0, -2);
             }
         }
